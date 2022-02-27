@@ -231,34 +231,16 @@ function setDateHtml(date) {
   thisMonth.innerHTML = getCurrentMonth(currentDate);
 }
 
-//degree change
-
-function degreesFtoC() {
-  const spanElement = document.querySelector("#current-temp");
-
-  spanElement.innerHTML = currentTemp;
-}
-
-let celsiusElement = document.querySelector("#celsius");
-celsiusElement.addEventListener("click", degreesFtoC);
-
-function degreesCtoF() {
-  let spanElement = document.querySelector("#current-temp");
-
-  spanElement.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
-}
-
 function readCurrentPosition() {
   navigator.geolocation.getCurrentPosition(setPosition);
 }
 
-let fahrenheitElement = document.querySelector("#fahrenheit");
-fahrenheitElement.addEventListener("click", degreesCtoF);
+window.addEventListener("load", () => {
+  const searchQuery = document.querySelector("#search-button");
+  searchQuery.addEventListener("click", searchCity);
 
-let searchQuery = document.querySelector("#search-button");
-searchQuery.addEventListener("click", searchCity);
+  setDateHtml(currentDate);
 
-setDateHtml(currentDate);
-
-let positionButton = document.querySelector("#location-button");
-positionButton.addEventListener("click", readCurrentPosition);
+  const positionButton = document.querySelector("#location-button");
+  positionButton.addEventListener("click", readCurrentPosition);
+});

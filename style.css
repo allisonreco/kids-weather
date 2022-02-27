@@ -8,16 +8,14 @@
   --color-text-subtitle: #7d8672;
   --color-text-main: #f9f3e8;
   --color-text-contrast: #7b665b;
-  --color-text-muted: #f9f3e8;
   --color-text-panel-1: #f9f3e8;
   --color-text-panel-2: #aecce6;
   --color-text-panel-3: #eacbbc;
-  --color-text-panel-4: #f9f3e8;
-  --color-text-panel-5: #f9f3e8;
-  --color-text-panel-6: #f9f3e8;
-}
-
-* {
+  --color-text-panel-4: #d6d0c6;
+  --color-text-panel-5: #d4ddc9;
+  --color-text-panel-6: #dfcab2;
+  --color-text-panel-7: #aecce5;
+  --color-text-panel-8: #c8c2b0;
 }
 
 body {
@@ -25,6 +23,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+}
+
+::placeholder {
+  color: var(--color-text-main);
 }
 
 h1 {
@@ -59,9 +61,20 @@ i {
   font-size: 50px;
 }
 
+input {
+  color: var(--color-text-main);
+}
+
 input:focus {
   outline: none;
+}
+
+button > i {
   color: var(--color-text-main);
+}
+
+button > i:hover {
+  color: var(--color-text-contrast);
 }
 
 @media (min-width: 1200px) {
@@ -75,7 +88,7 @@ input:focus {
 }
 
 #conditions {
-  background: #eacbbc;
+  background: var(--color-text-panel-3);
   padding: 5% 0;
   margin-bottom: 2em;
   max-height: 465px;
@@ -121,8 +134,8 @@ input:focus {
 #search-input {
   display: inline;
   bottom: 10px;
-  border-radius: 10px;
-  border-style: none;
+  border: none;
+  border-bottom: 1px solid var(--color-text-main);
   position: relative;
   background-color: var(--color-text-panel-2);
   padding: 10px;
@@ -137,7 +150,7 @@ input:focus {
   border-color: transparent;
   border-style: solid;
   background-color: transparent;
-  color: var(--color-text-muted);
+  color: var(--color-text-main);
 }
 
 .summary > div {
@@ -150,7 +163,6 @@ input:focus {
   justify-content: space-between;
   flex-wrap: nowrap;
   text-align: left;
-  font-size: x-large;
   line-height: 1;
 }
 
@@ -159,28 +171,32 @@ input:focus {
 }
 
 .summary-one {
-  background-color: #aecce6;
+  background-color: var(--color-text-panel-2);
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+  font-size: x-large;
 }
 
 .summary-two {
-  background-color: #d6d0c6;
+  background-color: var(--color-text-panel-4);
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+  font-size: xx-large;
 }
 
 .summary-three {
-  background-color: #dfcab2;
+  background-color: var(--color-text-panel-6);
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+  font-size: xx-large;
 }
 
 .summary-four {
-  background-color: #d4ddc9;
+  background-color: var(--color-text-panel-5);
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+  font-size: x-large;
 }
 
 .button-column {
   text-align: center;
-  background-color: #c8c2b0;
+  background-color: var(--color-text-panel-8);
   border-radius: 10px;
   margin-bottom: 32px;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
@@ -214,7 +230,7 @@ input:focus {
 
 .button-list {
   border-style: none;
-  background-color: #c8c2b0;
+  background-color: var(--color-text-panel-8);
 }
 
 .forecast > * {
@@ -250,25 +266,36 @@ input:focus {
 }
 
 #forecast-day-1 > div {
-  background-color: #eacbbc;
+  background-color: var(--color-text-panel-3);
 }
 
 #forecast-day-2 > div {
-  background-color: #d4ddc9;
+  background-color: var(--color-text-panel-5);
 }
 
 #forecast-day-3 > div {
-  background-color: #dfcab2;
+  background-color: var(--color-text-panel-6);
 }
 
 #forecast-day-4 > div {
-  background-color: #d6d0c6;
+  background-color: var(--color-text-panel-4);
 }
 
 #forecast-day-5 > div {
-  background-color: #aecce5;
+  background-color: var(--color-text-panel-7);
 }
 
 footer {
   text-align: center;
+  font-family: "Gaegu", cursive;
+  color: var(--color-text-contrast);
+}
+
+footer > a {
+  text-decoration: none;
+  color: var(--color-text-title);
+}
+footer > a:hover {
+  text-decoration: none;
+  color: var(--color-text-subtitle);
 }
