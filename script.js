@@ -1,6 +1,7 @@
 const apiKey = "ed382637ed83e5508a8eed5925733c11";
 let currentTemp;
 let currentDate = new Date();
+let isPlaying = false;
 const initialLocation = "Berlin";
 const conditionIcons = {
   day: {
@@ -49,6 +50,12 @@ const backgroundImages = {
   afternoon: "images/2.png",
   evening: "images/3.png",
   night: "images/4.png",
+};
+const sounds = {
+  morning: "sounds/morning.mp3",
+  afternoon: "sounds/afternoon.mp3",
+  evening: "sounds/evening.mp3",
+  night: "sounds/night.mp3",
 };
 const panelColors = {
   morning: [
@@ -195,6 +202,7 @@ function setTimeofDayData(currentDate, sunriseDate, sunsetDate) {
   const greeting = messages[timeOfDay];
   const backgroundImage = backgroundImages[timeOfDay];
   const colorSet = panelColors[timeOfDay];
+  const sound = sounds[timeOfDay];
 
   let greetingElement = document.querySelector("#greet-phrase");
   greetingElement.innerHTML = greeting;
@@ -207,6 +215,9 @@ function setTimeofDayData(currentDate, sunriseDate, sunsetDate) {
   colorSet.forEach((color, index) => {
     rootElement.style.setProperty(`--color-text-panel-${index + 1}`, color);
   });
+
+  let audioSourceElement = document.querySelector("audio > src");
+  audioSourceElement.setAttribute("src", sound);
 }
 
 function setInitialLocation() {
@@ -345,6 +356,32 @@ function setDateHtml(date) {
 
   let thisMonth = document.querySelector("#current-month");
   thisMonth.innerHTML = getCurrentMonth(currentDate);
+}
+
+function audioPlay() {
+  const audioElement = document.querySelector("#audio");
+  const iconElement = document.querySelector("#play-pause-button > i");
+
+  audioElement.play();
+  isPlaying = true;
+  iconElement.classList.replace("fa-play", "fa-pause");
+}
+
+function audioPause() {
+  const audioElement = document.querySelector("#audio");
+  const iconElement = document.querySelector("#play-pause-button > i");
+
+  audioElement.pause();
+  isPlaying = false;
+  iconElement.classList.replace("fa-pause", "fa-play");
+}
+
+function handleAudioPlayPause() {
+  if (isPlaying) {
+    audioPause();
+  } else {
+    audioPlay();
+  }
 }
 
 function readCurrentPosition() {

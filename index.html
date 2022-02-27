@@ -139,13 +139,26 @@
               </li>
 
               <li>
-                <button class="button-list">
-                  <i class="fa-solid fa-music"></i>
+                <audio controls id="audio">
+                  <source src="sounds/afternoon.mp3" type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+                <button
+                  id="play-pause-button"
+                  class="button-list"
+                  onclick="handleAudioPlayPause()"
+                >
+                  <i class="fa-solid fa-play"></i>
                 </button>
               </li>
               <li>
                 <button class="button-list">
-                 <a href=" https://www.amazon.de/dp/164611616X/ref=cm_sw_em_r_mt_dp_W7W6HH38TN6AF6V2BC98" target="_blank"> <i class="fa-solid fa-book-open"></i> </a>
+                  <a
+                    href=" https://www.amazon.de/dp/164611616X/ref=cm_sw_em_r_mt_dp_W7W6HH38TN6AF6V2BC98"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-book-open"></i>
+                  </a>
                 </button>
               </li>
               <li>

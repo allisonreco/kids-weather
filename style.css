@@ -49,6 +49,10 @@ main {
   color: var(--color-text-main);
 }
 
+audio {
+  display: none;
+}
+
 a {
   text-decoration: none !important;
   color: var(--color-text-main) !important;
