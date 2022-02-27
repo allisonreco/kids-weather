@@ -14,7 +14,6 @@
 
 * {
   font-family: "Gaegu", cursive;
-  /* font-family: "Bryndan Write";*/
 }
 
 body {
@@ -26,7 +25,6 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 4em;
   color: var(--color-text-title);
 }
 
@@ -64,6 +62,7 @@ input:focus {
 #conditions {
   background: #eacbbc;
   padding: 5% 0;
+  margin-bottom: 2em;
   min-width: 452px;
   max-height: 465px;
   border-radius: 20px;
@@ -101,7 +100,7 @@ input:focus {
   /*background-color: var(--color-text-panel-2);*/
   padding: 10px;
 
-  width: 76%;
+  width: 88%;
   color: var(--color-text-main);
 }
 
@@ -186,7 +185,8 @@ input:focus {
   margin: 0 auto;
   height: 150px;
   text-align: center;
-  padding: 0.8em;
+  padding: 1em;
+  font-size: x-large;
   border-radius: 10px;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
 }
