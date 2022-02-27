@@ -179,12 +179,11 @@ input:focus {
 .forecast > div {
   padding: 0;
   margin: 0;
-  width: fit-content;
+  width: 180px;
 }
 
 .forecast-day {
   margin: 0 auto;
-  width: 150px;
   height: 150px;
   text-align: center;
   padding: 0.8em;
@@ -194,7 +193,6 @@ input:focus {
 
 .forecast-day-of-week {
   margin: 0 auto;
-  width: 150px;
   text-align: center;
   font-size: x-large;
   color: var(--color-text-contrast);
