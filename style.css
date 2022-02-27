@@ -111,7 +111,7 @@ input:focus {
   position: relative;
   background-color: var(--color-text-panel-2);
   padding: 10px;
-  width: 87%;
+  width: calc(100% - 90px);
   color: var(--color-text-main);
 }
 
@@ -126,7 +126,7 @@ input:focus {
 }
 
 .summary > div {
-  min-height: 96px;
+  min-height: 90px;
   margin-bottom: 1em;
   padding: 0.7em;
   border-radius: 10px;
@@ -164,7 +164,6 @@ input:focus {
 }
 
 .button-column {
-  height: 95%;
   text-align: center;
   background-color: #c8c2b0;
   border-radius: 10px;
@@ -172,18 +171,29 @@ input:focus {
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-@media (min-width: 960px) {
-  .button-column {
-    min-width: 200px;
-  }
+.button-column > ul > li {
+  display: inline;
 }
 
 .button-column > ul {
-  padding: 20px 0 20px 0;
+  padding: 2% 0 2% 0;
 }
 
-.button-column li {
-  padding-bottom: 30px;
+@media (min-width: 1400px) {
+  .button-column {
+    height: 95%;
+    min-width: 200px;
+  }
+
+  .button-column > ul {
+    padding: 50% 0 10% 0;
+    display: block;
+  }
+
+  .button-column > ul > li {
+    padding-bottom: 30%;
+    display: block;
+  }
 }
 
 .button-list {
