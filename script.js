@@ -63,9 +63,9 @@ const panelColors = {
   afternoon: [
     "#aecce6",
     "#eacbbc",
-    "d6d0c6",
+    "#D6D0C6",
     "#d4ddc9",
-    "#dfcab2",
+    "#DFCAB2",
     "#aecce5",
     "#c8c2b0",
   ],
