@@ -1,6 +1,7 @@
 const apiKey = "ed382637ed83e5508a8eed5925733c11";
 let currentTemp;
 let currentDate = new Date();
+const initialLocation = "Berlin";
 const conditionIcons = {
   day: {
     Thunderstorm: "fas fa-bolt-lightning",
@@ -37,6 +38,56 @@ const conditionIcons = {
     Clouds: "fas fa-cloud-moon",
   },
 };
+const messages = {
+  morning: "Good morning sunshine!",
+  afternoon: "Good afternoon explorer!",
+  evening: "Good evening dreamer!",
+  night: "Good night astronaut!",
+};
+const backgroundImages = {
+  morning: "images/1.png",
+  afternoon: "images/2.png",
+  evening: "images/3.png",
+  night: "images/4.png",
+};
+const panelColors = {
+  morning: [
+    "#96D7DD",
+    "#7EB1C4",
+    "#90ADC6",
+    "#CCD5AE",
+    "#DFCAB2",
+    "#93A491",
+    "#C9E4DE",
+  ],
+  afternoon: [
+    "#aecce6",
+    "#eacbbc",
+    "d6d0c6",
+    "#d4ddc9",
+    "#dfcab2",
+    "#aecce5",
+    "#c8c2b0",
+  ],
+  evening: [
+    "#E5989B",
+    "#EAAC8B",
+    "#B5838D",
+    "#6D6875",
+    "#B79F91",
+    "#E5989B",
+    "#B5838D",
+  ],
+  night: [
+    "#556573",
+    "#7B665B",
+    "#C8B8A4",
+    "#7D8672",
+    "#BF9E75",
+    "#556573",
+    "#8C7D70",
+  ],
+};
 
 function setPosition(position) {
   let currentLat = position.coords.latitude;
@@ -56,7 +107,7 @@ function displayForecast(response) {
     .filter((_, index) => index >= 1 && index <= 5)
     .forEach((conditions, index) => {
       const date = new Date(conditions.dt * 1000);
-      const weekDay = getWeekDayShort(date);
+      const weekDay = getWeekDay(date);
       const forecast = conditions.weather[0].main;
       const minTemp = Math.round(conditions.temp.min);
       const maxTemp = Math.round(conditions.temp.max);
@@ -84,7 +135,7 @@ function displayCurrentWeather(response) {
   getForecast(response.data.coord.lat, response.data.coord.lon);
 
   let currentCity = document.querySelector("#current-city");
-  currentCity.innerHTML = response.data.name;
+  currentCity.innerHTML = `<a href="https://www.google.com/maps/@${response.data.coord.lat},${response.data.coord.lon},15z" target="_blank" rel="noopener noreferrer">${response.data.name}</a>`;
 
   let conditionsIconElement = document.querySelector("#conditions > i");
 
@@ -125,29 +176,61 @@ function displayCurrentWeather(response) {
   );
 
   setDateHtml(currentDate);
-  greetPhrase(currentDate);
+  setTimeofDayData(
+    currentDate,
+    new Date(
+      (response.data.sys.sunrise + response.data.timezone + timezoneOffset) *
+        1000
+    ),
+    new Date(
+      (response.data.sys.sunset + response.data.timezone + timezoneOffset) *
+        1000
+    )
+  );
 }
 
-function greetPhrase(currentDate) {
-  let hour = currentDate.getHours();
-  let greeting;
-  if (hour < 12) {
-    greeting = "Good Morning!";
-  } else if (hour < 18) {
-    greeting = "Good Afternoon!";
-  } else {
-    greeting = "Good evening!";
-  }
+function setTimeofDayData(currentDate, sunriseDate, sunsetDate) {
+  let timeOfDay = getTimeOfDay(currentDate, sunriseDate, sunsetDate);
+
+  const greeting = messages[timeOfDay];
+  const backgroundImage = backgroundImages[timeOfDay];
+  const colorSet = panelColors[timeOfDay];
+
   let greetingElement = document.querySelector("#greet-phrase");
   greetingElement.innerHTML = greeting;
+
+  let bodyElement = document.querySelector("body");
+  bodyElement.style.backgroundImage = `url(${backgroundImage})`;
+
+  let rootElement = document.documentElement;
+
+  colorSet.forEach((color, index) => {
+    rootElement.style.setProperty(`--color-text-panel-${index + 1}`, color);
+  });
+}
+
+function setInitialLocation() {
+  let urlApi = `https://api.openweathermap.org/data/2.5/weather?q=${initialLocation}&appid=${apiKey}&units=metric`;
+  axios
+    .get(urlApi)
+    .then(displayCurrentWeather)
+    .catch(() => {
+      alert(`Could not find location ${initialLocation}`);
+    });
 }
 
 function searchCity(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-input");
+  const location = searchInput.value || initialLocation;
 
-  let urlApi = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${apiKey}&units=metric`;
-  axios.get(urlApi).then(displayCurrentWeather);
+  let urlApi = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
+  axios
+    .get(urlApi)
+    .then(displayCurrentWeather)
+    .catch(() => {
+      alert(`Could not find location ${searchInput.value}`);
+    });
 }
 
 //Week day
@@ -166,18 +249,51 @@ function getWeekDay(date) {
   return currentWeekDay;
 }
 
-function getWeekDayShort(date) {
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  let currentWeekDay = days[date.getDay()];
-  return currentWeekDay;
-}
-
 function getDayNight(date, sunrise, sunset) {
   if (date < sunrise || date > sunset) {
     return "night";
   } else {
     return "day";
   }
+}
+
+function getTimeOfDay(date, sunrise, sunset) {
+  const noon = new Date(currentDate);
+  noon.setHours(12, 0, 0);
+  const eveningEnd = new Date(sunset);
+  eveningEnd.setTime(eveningEnd.getTime() + 2 * 60 * 60 * 1000);
+
+  const timesOfDay = [
+    {
+      from: 0,
+      until: sunrise,
+      time: "night",
+    },
+    {
+      from: sunrise,
+      until: noon,
+      time: "morning",
+    },
+    {
+      from: noon,
+      until: sunset,
+      time: "afternoon",
+    },
+    {
+      from: sunset,
+      until: eveningEnd,
+      time: "evening",
+    },
+    {
+      from: eveningEnd,
+      until: Number.MAX_SAFE_INTEGER,
+      time: "night",
+    },
+  ];
+
+  return timesOfDay.find(
+    (timeOfDay) => date >= timeOfDay.from && date < timeOfDay.until
+  ).time;
 }
 
 //Hour and minutes
@@ -243,4 +359,6 @@ window.addEventListener("load", () => {
 
   const positionButton = document.querySelector("#location-button");
   positionButton.addEventListener("click", readCurrentPosition);
+
+  setInitialLocation();
 });
