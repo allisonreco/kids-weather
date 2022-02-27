@@ -59,16 +59,27 @@ input:focus {
   color: var(--color-text-muted);
 }
 
+@media (min-width: 1200px) {
+  main {
+    transform: scale(0.8);
+  }
+}
+
 #conditions {
   background: #eacbbc;
   padding: 5% 0;
   margin-bottom: 2em;
-  min-width: 416px;
   max-height: 465px;
   border-radius: 20px;
   text-align: center;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
   text-transform: capitalize;
+}
+
+@media (min-width: 960px) {
+  #conditions {
+    min-width: 416px;
+  }
 }
 
 #conditions > p {
@@ -93,6 +104,7 @@ input:focus {
 }
 
 #search-input {
+  display: inline;
   bottom: 10px;
   border-radius: 10px;
   border-style: none;
@@ -104,6 +116,7 @@ input:focus {
 }
 
 #search-button {
+  display: inline;
   position: relative;
   border-radius: 10px;
   border-color: transparent;
@@ -151,13 +164,18 @@ input:focus {
 }
 
 .button-column {
-  min-width: 200px;
   height: 95%;
   text-align: center;
   background-color: #c8c2b0;
   border-radius: 10px;
   margin-bottom: 32px;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 960px) {
+  .button-column {
+    min-width: 200px;
+  }
 }
 
 .button-column > ul {
