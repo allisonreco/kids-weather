@@ -30,6 +30,7 @@ body {
 
 h1 {
   text-align: center;
+  text-transform: uppercase;
   color: var(--color-text-title);
 }
 
@@ -55,7 +56,7 @@ a {
 
 a:hover {
   text-decoration: underline;
-  color: var(--color-text-subtitle) !important;
+  color: var(--color-text-contrast) !important;
 }
 
 ul {
@@ -82,7 +83,8 @@ button > i {
   color: var(--color-text-main);
 }
 
-button > i:hover {
+button > i:hover,
+button > a > i:hover {
   color: var(--color-text-contrast);
 }
 
