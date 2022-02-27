@@ -1,19 +1,23 @@
+@font-face {
+  font-family: "Bryndan Write";
+  src: url(fonts/BryndanWriteBook-nGPM.ttf) format("truetype");
+}
+
 :root {
   --color-text-title: #d67b64;
   --color-text-subtitle: #7d8672;
-  --color-text-main: #ffffff;
+  --color-text-main: #f9f3e8;
   --color-text-contrast: #7b665b;
   --color-text-muted: #f9f3e8;
   --color-text-panel-1: #f9f3e8;
   --color-text-panel-2: #aecce6;
-  --color-text-panel-3: #f9f3e8;
+  --color-text-panel-3: #eacbbc;
   --color-text-panel-4: #f9f3e8;
   --color-text-panel-5: #f9f3e8;
   --color-text-panel-6: #f9f3e8;
 }
 
 * {
-  font-family: "Gaegu", cursive;
 }
 
 body {
@@ -34,6 +38,11 @@ h2 {
   color: var(--color-text-subtitle);
 }
 
+h1,
+h2 {
+  font-family: "Gaegu", cursive;
+}
+
 main {
   color: var(--color-text-main);
 }
@@ -46,13 +55,13 @@ ul {
 }
 
 i {
-  color: var(--color-text-muted);
+  color: var(--color-text-main);
   font-size: 50px;
 }
 
 input:focus {
   outline: none;
-  color: var(--color-text-muted);
+  color: var(--color-text-main);
 }
 
 @media (min-width: 1200px) {
@@ -74,6 +83,7 @@ input:focus {
   text-align: center;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
   text-transform: capitalize;
+  font-family: "Bryndan Write", cursive;
   font-size: xx-large;
 }
 
@@ -104,6 +114,10 @@ input:focus {
   margin-top: 2em;
 }
 
+.summary {
+  font-family: "Gaegu", cursive;
+}
+
 #search-input {
   display: inline;
   bottom: 10px;
@@ -123,11 +137,7 @@ input:focus {
   border-color: transparent;
   border-style: solid;
   background-color: transparent;
-  color: white;
-}
-
-.summary {
-  font-size: xx-large;
+  color: var(--color-text-muted);
 }
 
 .summary > div {
@@ -222,6 +232,7 @@ input:focus {
   text-align: center;
   padding: 1em;
   font-size: x-large;
+  font-family: "Bryndan Write", cursive;
   border-radius: 10px;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
 }
@@ -233,6 +244,7 @@ input:focus {
 .forecast-day-of-week {
   margin: 0 auto;
   text-align: center;
+  font-family: "Gaegu", cursive;
   font-size: x-large;
   color: var(--color-text-contrast);
 }
