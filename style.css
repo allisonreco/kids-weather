@@ -97,10 +97,9 @@ input:focus {
   border-radius: 10px;
   border-style: none;
   position: relative;
-  /*background-color: var(--color-text-panel-2);*/
+  background-color: var(--color-text-panel-2);
   padding: 10px;
-
-  width: 88%;
+  width: 87%;
   color: var(--color-text-main);
 }
 
@@ -152,7 +151,8 @@ input:focus {
 }
 
 .button-column {
-  max-width: 70px;
+  min-width: 200px;
+  height: 95%;
   text-align: center;
   background-color: #c8c2b0;
   border-radius: 10px;
