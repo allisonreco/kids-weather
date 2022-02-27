@@ -64,7 +64,8 @@ input:focus {
 #conditions {
   background: #eacbbc;
   padding: 5% 0;
-  margin-bottom: 10px;
+  min-width: 452px;
+  max-height: 465px;
   border-radius: 20px;
   text-align: center;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
@@ -114,7 +115,7 @@ input:focus {
 }
 
 .summary > div {
-  height: 96px;
+  min-height: 96px;
   margin-bottom: 1em;
   padding: 0.7em;
   border-radius: 10px;
@@ -179,7 +180,6 @@ input:focus {
 .forecast > div {
   padding: 0;
   margin: 0;
-  width: 180px;
 }
 
 .forecast-day {
