@@ -216,8 +216,10 @@ function setTimeofDayData(currentDate, sunriseDate, sunsetDate) {
     rootElement.style.setProperty(`--color-text-panel-${index + 1}`, color);
   });
 
-  let audioSourceElement = document.querySelector("audio > src");
-  audioSourceElement.setAttribute("src", sound);
+  let audioSourceElement = document.querySelector("#audio");
+  audioSourceElement.src = sound;
+  audioSourceElement.load();
+  audioPause();
 }
 
 function setInitialLocation() {
@@ -225,7 +227,8 @@ function setInitialLocation() {
   axios
     .get(urlApi)
     .then(displayCurrentWeather)
-    .catch(() => {
+    .catch((error) => {
+      console.error(error);
       alert(`Could not find location ${initialLocation}`);
     });
 }
@@ -239,7 +242,8 @@ function searchCity(event) {
   axios
     .get(urlApi)
     .then(displayCurrentWeather)
-    .catch(() => {
+    .catch((error) => {
+      console.error(error);
       alert(`Could not find location ${searchInput.value}`);
     });
 }
@@ -382,6 +386,11 @@ function handleAudioPlayPause() {
   } else {
     audioPlay();
   }
+}
+
+function handleAudioChange() {
+  const audioElement = document.querySelector("#audio");
+  audioElement.load();
 }
 
 function readCurrentPosition() {
