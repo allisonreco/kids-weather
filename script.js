@@ -289,7 +289,7 @@ function getTimeOfDay(date, sunrise, sunset) {
   const noon = new Date(currentDate);
   noon.setHours(12, 0, 0);
   const eveningEnd = new Date(sunset);
-  eveningEnd.setTime(eveningEnd.getTime() + 2 * 60 * 60 * 1000);
+  eveningEnd.setTime(eveningEnd.getTime() + 3 * 60 * 60 * 1000);
 
   const timesOfDay = [
     {
