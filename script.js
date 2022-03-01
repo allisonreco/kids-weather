@@ -44,14 +44,15 @@ const messages = {
   afternoon: "Good afternoon explorer!",
   evening: "Good evening dreamer!",
   night: "Good night astronaut!",
-}
+};
 const phrases = {
-  morning:"You're braver than you believe, stronger than you seem, and smarter than you think.",
+  morning:
+    "You're braver than you believe, stronger than you seem, and smarter than you think.",
   afternoon: "Never lose sight of your sense of wonder!",
   evening: "If you can dream it, you can do it!",
-  night:"Reach for the stars, spread your wings and fly. You never know what you can do until you try!",
-}
-
+  night:
+    "Reach for the stars, spread your wings and fly. You never know what you can do until you try!",
+};
 
 const backgroundImages = {
   morning: "images/1.png",
@@ -211,10 +212,9 @@ function setTimeofDayData(currentDate, sunriseDate, sunsetDate) {
   const backgroundImage = backgroundImages[timeOfDay];
   const colorSet = panelColors[timeOfDay];
   const sound = sounds[timeOfDay];
-  const phrase = phrases[timeOfDay]
-  
+  const phrase = phrases[timeOfDay];
 
-let phraseElement = document.querySelector(".summary-four");
+  let phraseElement = document.querySelector(".summary-four");
   phraseElement.innerHTML = phrase;
 
   let greetingElement = document.querySelector("#greet-phrase");
@@ -222,7 +222,6 @@ let phraseElement = document.querySelector(".summary-four");
 
   let bodyElement = document.querySelector("body");
   bodyElement.style.backgroundImage = `url(${backgroundImage})`;
-
 
   let rootElement = document.documentElement;
 
@@ -400,11 +399,6 @@ function handleAudioPlayPause() {
   } else {
     audioPlay();
   }
-}
-
-function handleAudioChange() {
-  const audioElement = document.querySelector("#audio");
-  audioElement.load();
 }
 
 function readCurrentPosition() {
